@@ -12,9 +12,18 @@ async function getWords() {
 
         const data = await response.json();
         console.log("data: ", data);
-        console.log("data[0]", data[0]);
+        console.log("data[0]: ", data[0]);
 
-        return data[0];
+        const shuffledData = [...data];
+        console.log("shuffledData:", shuffledData);
+
+        for(let i = shuffledData.length - 1; i > 0; i--){
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledData[i], shuffledData[j]] = [shuffledData[j], shuffledData[i]];
+            console.log("i-string, j-string; ", i, j, shuffledData[i], shuffledData[j]);
+        }
+
+        return shuffledData;
 
     } catch (error) {
         console.error(error);
